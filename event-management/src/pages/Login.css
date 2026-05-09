@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+
+/* FULL BACKGROUND (TRADITIONAL IMAGE) */
+
+.login-bg {
+    height: 100vh;
+    width: 100%;
+    background: url("https://images.unsplash.com/photo-1529636798458-92182e662485") no-repeat center center/cover;
+    position: relative;
+}
+
+
+/* DARK OVERLAY */
+
+.login-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+
+/* HEADER */
+
+.login-header {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    z-index: 2;
+    letter-spacing: 1px;
+}
+
+
+/* CENTER WRAPPER */
+
+.login-wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+
+/* LOGIN CARD */
+
+.login-card {
+    width: 340px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+
+/* INPUT */
+
+.login-card input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+
+/* BUTTON */
+
+.login-card button {
+    width: 100%;
+    padding: 10px;
+    background: #4a6cf7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.login-card button:hover {
+    background: #3a57d6;
+}
+
+
+/* TEXT */
+
+.login-card h2 {
+    margin-bottom: 15px;
+}
+
+.login-header p {
+    color: red;
+}

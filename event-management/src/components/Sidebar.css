@@ -1,0 +1,30 @@
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    background: #1a1a1a;
+    color: white;
+    position: fixed;
+    padding: 20px;
+}
+
+.sidebar a {
+    display: block;
+    margin: 15px 0;
+    color: white;
+    text-decoration: none;
+}
+
+.dashboard {
+    display: flex;
+}
+
+.main {
+    flex: 1;
+    padding: 20px;
+}
+
+.logout-link {
+    cursor: pointer;
+    color: red;
+    margin-top: 20px;
+}

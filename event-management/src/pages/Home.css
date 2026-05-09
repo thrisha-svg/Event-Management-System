@@ -1,0 +1,93 @@
+.dashboard {
+    padding: 25px;
+    background: #f7f7fb;
+    min-height: 100vh;
+}
+
+.main {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #222;
+}
+
+
+/* GRID LAYOUT */
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+
+/* CARD STYLE */
+
+.card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+/* IMAGE */
+
+.card-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .card-image {
+    transform: scale(1.05);
+}
+
+
+/* CONTENT */
+
+.card-content {
+    padding: 15px;
+    text-align: center;
+}
+
+.event-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+
+/* DESCRIPTION */
+
+.description {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 26px;
+    }
+    .card-image {
+        height: 200px;
+    }
+}

@@ -1,0 +1,46 @@
+/* CARD STYLE */
+
+.service-card {
+    height: 220px;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+
+/* HOVER EFFECT */
+
+.service-card:hover {
+    transform: scale(1.05);
+}
+
+
+/* DARK OVERLAY */
+
+.overlay {
+    background: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    color: white;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+
+/* TEXT */
+
+.overlay h5 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.overlay p {
+    font-size: 13px;
+    margin: 3px 0;
+}
