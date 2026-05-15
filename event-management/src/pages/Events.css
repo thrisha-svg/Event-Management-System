@@ -100,7 +100,7 @@ h2 {
 
 .delete-btn {
     margin-top: 10px;
-    width: 100%;
+    width: 100px;
     background: red;
     color: white;
     border: none;
@@ -111,4 +111,12 @@ h2 {
 
 .delete-btn:hover {
     background: darkred;
+}
+
+.edit-btn {
+    width: 100px;
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
 }

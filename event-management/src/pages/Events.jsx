@@ -15,10 +15,15 @@ function Events() {
     desc: ""
   });
 
+  // ✅ EDIT MODE STATE
+  const [editId, setEditId] =
+    useState(null);
+
   // =========================
   // AUTO EVENT IMAGES
   // =========================
   const eventImages = {
+
     Wedding:
       "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop",
 
@@ -26,47 +31,69 @@ function Events() {
       "https://images.unsplash.com/photo-1464349153735-7db50ed83c84?q=80&w=1200&auto=format&fit=crop",
 
     "Naming Ceremony":
-        "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=1200&auto=format&fit=crop",
 
     Corporate:
       "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop"
+
   };
 
   // =========================
   // FETCH EVENTS
   // =========================
   const fetchEvents = async () => {
+
     try {
-      const res = await axios.get("http://localhost:5000/events");
+
+      const res = await axios.get(
+        "http://localhost:5000/events"
+      );
+
       setEvents(res.data);
+
     } catch (error) {
+
       console.log(error);
+
     }
   };
 
   useEffect(() => {
+
     fetchEvents();
+
   }, []);
 
   // =========================
   // HANDLE CHANGE
   // =========================
   const handleChange = (e) => {
+
     setForm({
+
       ...form,
-      [e.target.name]: e.target.value
+
+      [e.target.name]:
+        e.target.value
+
     });
   };
 
   // =========================
-  // ADD EVENT (AUTO IMAGE)
+  // ADD EVENT
   // =========================
   const handleAddEvent = async () => {
+
     try {
 
       const dataToSend = {
+
         ...form,
-        image: eventImages[form.name] || form.image
+
+        image:
+          eventImages[form.name] ||
+          form.image
+
       };
 
       await axios.post(
@@ -74,8 +101,11 @@ function Events() {
         dataToSend
       );
 
+      alert("Event Added ✅");
+
       fetchEvents();
 
+      // RESET FORM
       setForm({
         name: "",
         date: "",
@@ -86,26 +116,109 @@ function Events() {
       });
 
     } catch (error) {
+
       console.log(error);
+
     }
   };
+
+  // =========================
+  // EDIT BUTTON CLICK
+  // =========================
+  const handleEdit = (event) => {
+
+    setEditId(event._id);
+
+    setForm({
+
+      name: event.name,
+      date: event.date,
+      location: event.location,
+      price: event.price,
+      image: event.image,
+      desc: event.desc
+
+    });
+  };
+
+  // =========================
+  // UPDATE EVENT
+  // =========================
+  const handleUpdateEvent =
+    async () => {
+
+      try {
+
+        const dataToSend = {
+
+          ...form,
+
+          image:
+            eventImages[form.name] ||
+            form.image
+
+        };
+
+        await axios.put(
+
+          `http://localhost:5000/events/${editId}`,
+
+          dataToSend
+
+        );
+
+        alert("Event Updated ✅");
+
+        fetchEvents();
+
+        // RESET
+        setEditId(null);
+
+        setForm({
+          name: "",
+          date: "",
+          location: "",
+          price: "",
+          image: "",
+          desc: ""
+        });
+
+      } catch (error) {
+
+        console.log(error);
+
+      }
+    };
 
   // =========================
   // DELETE EVENT
   // =========================
   const handleDelete = async (id) => {
+
     try {
-      await axios.delete(`http://localhost:5000/events/${id}`);
+
+      await axios.delete(
+        `http://localhost:5000/events/${id}`
+      );
+
+      alert("Event Deleted ❌");
+
       fetchEvents();
+
     } catch (error) {
+
       console.log(error);
+
     }
   };
 
   return (
+
     <div className="container">
 
-      <h2>🎉 Events Management</h2>
+      <h2>
+        🎉 Events Management
+      </h2>
 
       {/* FORM */}
       <div className="form">
@@ -113,7 +226,7 @@ function Events() {
         <input
           type="text"
           name="name"
-          placeholder="Event Name (Wedding, Birthday...)"
+          placeholder="Event Name"
           value={form.name}
           onChange={handleChange}
         />
@@ -149,43 +262,105 @@ function Events() {
           onChange={handleChange}
         />
 
-        <button onClick={handleAddEvent}>
-          Add Event
-        </button>
+        {/* ✅ CONDITIONAL BUTTON */}
+        {editId ? (
+
+          <button
+            onClick={handleUpdateEvent}
+          >
+            Update Event
+          </button>
+
+        ) : (
+
+          <button
+            onClick={handleAddEvent}
+          >
+            Add Event
+          </button>
+
+        )}
 
       </div>
 
       {/* EVENTS */}
       {events.length === 0 ? (
+
         <h4>No Events Added</h4>
+
       ) : (
+
         <div className="event-grid">
 
           {events.map((e) => (
 
-            <div className="event-card" key={e._id}>
+            <div
+              className="event-card"
+              key={e._id}
+            >
 
+              {/* IMAGE */}
               <img
                 src={e.image}
                 alt={e.name}
                 className="event-image"
               />
 
+              {/* INFO */}
               <div className="event-info">
 
                 <h3>{e.name}</h3>
 
-                <p>📅 {e.date}</p>
-                <p>📍 {e.location}</p>
-                <p>💰 ₹{e.price}</p>
-                <p className="desc">{e.desc}</p>
+                <p>
+                  📅 {e.date}
+                </p>
 
-                <button
-                  className="delete-btn"
-                  onClick={() => handleDelete(e._id)}
+                <p>
+                  📍 {e.location}
+                </p>
+
+                <p>
+                  💰 ₹{e.price}
+                </p>
+
+                <p className="desc">
+                  {e.desc}
+                </p>
+
+                {/* BUTTONS */}
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "10px",
+                    marginTop: "10px"
+                  }}
                 >
-                  Delete
-                </button>
+
+                  {/* EDIT */}
+                  <button
+
+                    className="btn btn-primary"
+
+                    onClick={() =>
+                      handleEdit(e)
+                    }
+                  >
+                    Edit
+                  </button>
+
+                  {/* DELETE */}
+                  <button
+
+                    className="delete-btn"
+
+                    onClick={() =>
+                      handleDelete(e._id)
+                    }
+                  >
+                    Delete
+                  </button>
+
+                </div>
 
               </div>
 
@@ -194,6 +369,7 @@ function Events() {
           ))}
 
         </div>
+
       )}
 
     </div>
