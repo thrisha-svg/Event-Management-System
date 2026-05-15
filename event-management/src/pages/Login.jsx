@@ -14,7 +14,7 @@ function Login() {
 
     e.preventDefault();
 
-    // 👑 ADMIN LOGIN
+    // ADMIN LOGIN
     if (
       email === "admin@eventhub.com" &&
       password === "admin123"
@@ -37,7 +37,7 @@ function Login() {
       return;
     }
 
-    // 👤 USER LOGIN FROM DATABASE
+    // USER LOGIN
     try {
 
       const res = await axios.post(
@@ -50,7 +50,6 @@ function Login() {
 
       alert(res.data.message);
 
-      // save logged user
       localStorage.setItem(
         "user",
         JSON.stringify(res.data.user)
@@ -78,22 +77,52 @@ function Login() {
 
   return (
 
-    <div className="login-bg">
+    <div className="login-page">
 
-      {/* HEADER */}
-      <div className="login-header">
+      {/* NAVBAR */}
+      <nav className="navbar">
 
-        <h1>Event Management System</h1>
+        <div className="logo">
+          EventHub
+        </div>
 
-        <p>
-          Plan • Manage • Celebrate Events Easily
-        </p>
+        <ul className="nav-links">
+          <li>Home</li>
+          <li>Services</li>
+          <li>About</li>
+          <li>Contact</li>
+        </ul>
 
-      </div>
+      </nav>
 
-      {/* LOGIN CARD */}
-      <div className="login-wrapper">
+      {/* HERO SECTION */}
+      <div className="hero-section">
 
+        <div className="overlay"></div>
+
+        {/* LEFT CONTENT */}
+        <div className="hero-content">
+
+          <h1>
+             Event Management System
+          </h1>
+
+          <p>
+            Plan Weddings, Birthdays,
+            Corporate Events and Celebrations Easily
+          </p>
+
+          {/* EXPLORE BUTTON */}
+          <button
+            className="explore-btn"
+            onClick={() => navigate("/home")}
+          >
+            Explore Events
+          </button>
+
+        </div>
+
+        {/* LOGIN CARD */}
         <div className="login-card">
 
           <h2>Login</h2>
@@ -126,7 +155,7 @@ function Login() {
 
           </form>
 
-          <p style={{ marginTop: "15px" }}>
+          <p className="register-text">
             Don't have an account?{" "}
             <Link to="/register">
               Register
@@ -136,6 +165,54 @@ function Login() {
         </div>
 
       </div>
+
+      {/* FOOTER */}
+      <footer className="footer">
+
+        <div className="footer-content">
+
+          <h2>About EventHub</h2>
+
+          <p>
+            EventHub is a professional event
+            management platform that helps users
+            organize weddings, birthdays, corporate
+            meetings, receptions and celebrations
+            with easy booking and planning services.
+          </p>
+
+          <div className="footer-box">
+
+            <div>
+              <h3>Our Services</h3>
+
+              <ul>
+                <li>Wedding Planning</li>
+                <li>Birthday Events</li>
+                <li>Corporate Meetings</li>
+                <li>Decoration Services</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3>Contact</h3>
+
+              <p>Email: eventhub@gmail.com</p>
+
+              <p>Phone: +91 9876543210</p>
+
+              <p>Bangalore, India</p>
+            </div>
+
+          </div>
+
+          <p className="copyright">
+            © 2026 EventHub. All Rights Reserved.
+          </p>
+
+        </div>
+
+      </footer>
 
     </div>
   );

@@ -39,6 +39,11 @@ function Sidebar() {
             📦 User Orders
           </Link>
         </li>
+          <li className="mb-3">
+          <Link to="/user-list" style={{ color: "white", textDecoration: "none" }}>
+            📦 User List
+          </Link>
+        </li>
 
         {/* ✅ Logout placed here */}
         <li className="mb-3">

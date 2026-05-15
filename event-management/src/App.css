@@ -11,9 +11,10 @@
     color: white;
     text-align: center;
     padding: 15px;
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
+    margin-top: 30px;
 }
 
 .footer-fixed {
@@ -44,7 +45,7 @@
 
 body {
     margin: 0;
-    padding-bottom: 70px;
+    overflow-y: auto;
 }
 
 .booking-bg {

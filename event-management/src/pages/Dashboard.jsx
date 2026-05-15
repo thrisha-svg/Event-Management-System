@@ -1,51 +1,35 @@
-import React, {
-  useEffect,
-  useState
-} from "react";
+import React, { useEffect, useState } from "react";
 
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
+import categories from "../data/categories";
+
 import axios from "axios";
 
 function Dashboard() {
 
-  const [events, setEvents] =
-    useState(0);
+  // =========================
+  // EVENTS FROM LOCAL DATA
+  // =========================
 
-  const [bookings, setBookings] =
-    useState(0);
+  const [events] = useState(categories.length);
 
-  const [users, setUsers] =
-    useState(0);
+  // =========================
+  // BOOKINGS & USERS
+  // =========================
+
+  const [bookings, setBookings] = useState(0);
+
+  const [users, setUsers] = useState(0);
 
 
   useEffect(() => {
 
-    // ======================
-    // EVENTS COUNT
-    // ======================
-
-    axios
-      .get("http://localhost:5000/events")
-
-      .then((res) => {
-
-        setEvents(res.data.length);
-
-      })
-
-      .catch((err) => {
-
-        console.log(err);
-
-      });
-
-
-    // ======================
+    // =========================
     // BOOKINGS COUNT
-    // ======================
+    // =========================
 
     axios
       .get("http://localhost:5000/orders")
@@ -58,14 +42,14 @@ function Dashboard() {
 
       .catch((err) => {
 
-        console.log(err);
+        console.log("Bookings Error:", err);
 
       });
 
 
-    // ======================
+    // =========================
     // USERS COUNT
-    // ======================
+    // =========================
 
     axios
       .get("http://localhost:5000/users")
@@ -78,7 +62,7 @@ function Dashboard() {
 
       .catch((err) => {
 
-        console.log(err);
+        console.log("Users Error:", err);
 
       });
 
@@ -224,6 +208,7 @@ function Dashboard() {
                 </div>
 
               </div>
+
 
             </div>
 

@@ -28,6 +28,8 @@ function UserOrders() {
         "http://localhost:5000/orders"
       );
 
+      console.log("Orders:", res.data);
+
       setOrders(res.data);
 
     }
@@ -56,18 +58,44 @@ function UserOrders() {
   // ACCEPT ORDER
   // =========================
 
-  const handleAccept = async (id) => {
+  const handleAccept =
+    async (id) => {
 
     try {
+
+      // FIND CURRENT ORDER
+
+      const currentOrder =
+        orders.find(
+
+          (o) =>
+            o._id ===
+            id
+
+        );
+
+      // UPDATED ORDER
+
+      const updatedOrder = {
+
+        ...currentOrder,
+
+        status: "Accepted"
+
+      };
+
+      // UPDATE API
 
       await axios.put(
 
         `http://localhost:5000/orders/${id}`,
 
-        {
-          status: "Accepted"
-        }
+        updatedOrder
 
+      );
+
+      alert(
+        "Order Accepted"
       );
 
       fetchOrders();
@@ -76,7 +104,10 @@ function UserOrders() {
 
     catch (error) {
 
-      console.log(error);
+      console.log(
+        "Accept Error:",
+        error
+      );
 
     }
 
@@ -87,7 +118,8 @@ function UserOrders() {
   // DELETE ORDER
   // =========================
 
-  const handleDelete = async (id) => {
+  const handleDelete =
+    async (id) => {
 
     try {
 
@@ -97,13 +129,20 @@ function UserOrders() {
 
       );
 
+      alert(
+        "Order Deleted"
+      );
+
       fetchOrders();
 
     }
 
     catch (error) {
 
-      console.log(error);
+      console.log(
+        "Delete Error:",
+        error
+      );
 
     }
 
@@ -111,28 +150,32 @@ function UserOrders() {
 
 
   // =========================
-  // FILTER ORDERS
+  // FILTER
   // =========================
 
   let filteredOrders = orders;
 
   if (filter === "Pending") {
 
-    filteredOrders = orders.filter(
+    filteredOrders =
+      orders.filter(
 
-      (o) => o.status === "Pending"
+        (o) =>
+          o.status === "Pending"
 
-    );
+      );
 
   }
 
   if (filter === "Accepted") {
 
-    filteredOrders = orders.filter(
+    filteredOrders =
+      orders.filter(
 
-      (o) => o.status === "Accepted"
+        (o) =>
+          o.status === "Accepted"
 
-    );
+      );
 
   }
 
@@ -214,7 +257,6 @@ function UserOrders() {
 
               <p>
                 <strong>Total:</strong>
-                {" "}
                 ₹{o.total}
               </p>
 
@@ -239,14 +281,15 @@ function UserOrders() {
 
               <div className="order-buttons">
 
-                {/* ACCEPT BUTTON */}
-
-                {o.status === "Pending" && (
+                {o.status ===
+                  "Pending" && (
 
                   <button
                     className="accept-btn"
                     onClick={() =>
-                      handleAccept(o._id)
+                      handleAccept(
+                        o._id
+                      )
                     }
                   >
                     ✅ Accept
@@ -255,15 +298,15 @@ function UserOrders() {
                 )}
 
 
-                {/* DELETE BUTTON */}
-
                 <button
                   className="reject-btn"
                   onClick={() =>
-                    handleDelete(o._id)
+                    handleDelete(
+                      o._id
+                    )
                   }
                 >
-                  ❌ Delete
+                  ❌ Reject
                 </button>
 
               </div>

@@ -6,7 +6,7 @@ const wedding = {
   image: "https://images.unsplash.com/photo-1519741497674-611481863552",
   desc: "Complete wedding planning services",
 
-  includes: {
+includes: {
     "Pre Wedding": ["Engagement", "Mehendi", "Haldi"],
     "Main Event": ["Venue", "Stage", "Mandap"]
   },
@@ -58,7 +58,25 @@ const wedding = {
       price: 10000,
       icon: "💄",
       image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9",
-    }
+    },
+ 
+     
+
+    {
+      name: "Banners",
+      icon: "🟡",
+      price:10000,
+
+      image:
+        "https://images.unsplash.com/photo-1519225421980-715cb0215aed",
+  
+
+
+
+    },
+
+    
+
    
   ]
 };

@@ -1,94 +1,120 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  useEffect,
+  useState
+} from "react";
+
 import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
+
 import "./Home.css";
 
 function Home() {
+
   const navigate = useNavigate();
 
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] =
+    useState([]);
 
   // FETCH EVENTS
+
   useEffect(() => {
+
     axios
       .get("http://localhost:5000/events")
+
       .then((res) => {
 
-        // Create fixed event list
-        const updatedData = [
-          {
-            _id: "1",
-            name: "Wedding",
-            image:
-              res.data.find((e) => e.name === "Wedding")?.image ||
-              "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop",
-            description:
-              "Celebrate unforgettable wedding moments with beautiful decorations and joyful memories.",
-          },
+        setCategories(res.data);
 
-          {
-            _id: "2",
-            name: "Birthday",
-            image:
-              res.data.find((e) => e.name === "Birthday")?.image ||
-              "https://images.unsplash.com/photo-1464349153735-7db50ed83c84?q=80&w=1200&auto=format&fit=crop",
-            description:
-              "Enjoy fun-filled birthday celebrations with cakes, balloons, music, and happiness.",
-          },
-
-          {
-            _id: "3",
-            name: "Naming Ceremony",
-            image:
-              "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=1200&auto=format&fit=crop",
-            description:
-              "Make your naming ceremony memorable with traditional and elegant arrangements.",
-          },
-        ];
-
-        setCategories(updatedData);
       })
+
       .catch((err) => {
+
         console.log(err);
+
       });
+
   }, []);
 
   return (
-    <div className="dashboard">
-      <div className="main">
-        <h2 className="title">Event Categories</h2>
 
-        <div className="card-container">
+    <div className="home-dashboard">
+
+      <div className="home-main">
+
+        <h2 className="home-title">
+          Event Categories
+        </h2>
+
+        <div className="home-card-container">
+
           {categories.map((cat) => (
+
             <div
+
               key={cat._id}
-              className="card"
-              onClick={() => navigate(`/category/${cat.name}`)}
+
+              className="home-card"
+
+              style={{
+                backgroundImage:
+                  `url(${cat.image})`
+              }}
+
+              onClick={() =>
+                navigate(
+                  `/category/${cat.name}`
+                )
+              }
             >
-              {/* Event Image */}
+
+              {/* IMAGE */}
+
               <img
                 src={cat.image}
                 alt={cat.name}
-                className="card-image"
+                className="home-card-image"
               />
 
-              {/* Event Name */}
-              <div className="card-content">
-                <h3 className="event-title">
+              {/* CONTENT */}
+
+              <div className="home-card-content">
+
+                <h3 className="home-event-title">
                   {cat.name}
                 </h3>
 
-                {/* Event Description */}
-                <p className="description">
-                  {cat.description}
+                <p className="home-description">
+                  {cat.desc}
                 </p>
+
+                <h4>
+                  ₹{cat.price}
+                </h4>
+
+                <p>
+                  📍 {cat.location}
+                </p>
+
+                <p>
+                  📅 {cat.date}
+                </p>
+
               </div>
+
             </div>
+
           ))}
+
         </div>
+
       </div>
+
     </div>
+
   );
+
 }
 
 export default Home;

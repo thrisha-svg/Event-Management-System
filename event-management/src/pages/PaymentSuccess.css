@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.success-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    padding: 20px;
+}
+
+.success-card {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.success-icon {
+    width: 90px;
+    height: 90px;
+    background: #28a745;
+    color: white;
+    font-size: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+}
+
+.success-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.success-text {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 35px;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.home-btn,
+.logout-btn {
+    border: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.home-btn {
+    background: #007bff;
+    color: white;
+}
+
+.home-btn:hover {
+    background: #0056b3;
+}
+
+.logout-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.logout-btn:hover {
+    background: #b02a37;
+}
