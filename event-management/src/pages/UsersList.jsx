@@ -2,7 +2,7 @@ import React, {
   useEffect,
   useState
 } from "react";
-
+import "./UserList.css";
 import axios from "axios";
 
 function UsersList() {
@@ -48,20 +48,30 @@ function UsersList() {
           text-primary
           fw-bold
           mb-4
+          text-center
         "
       >
         Registered Users
       </h2>
 
-      {/* TABLE */}
+      {/* TABLE CARD */}
 
-      <div className="card shadow border-0">
+      <div
+        className="
+          card
+          shadow-lg
+          border-0
+        "
+      >
+
+        {/* CARD HEADER */}
 
         <div
           className="
             card-header
             bg-primary
             text-white
+            text-center
           "
         >
 
@@ -71,59 +81,120 @@ function UsersList() {
 
         </div>
 
+        {/* CARD BODY */}
+
         <div className="card-body">
 
-          <table
-            className="
-              table
-              table-hover
-              table-bordered
-            "
-          >
+          {/* RESPONSIVE TABLE */}
 
-            <thead
-              className="table-dark"
+          <div className="table-responsive">
+
+            <table
+              className="
+                table
+                table-hover
+                table-bordered
+                align-middle
+                text-center
+              "
             >
 
-              <tr>
+              {/* TABLE HEAD */}
 
-                <th>#</th>
+              <thead
+                className="
+                  table-dark
+                "
+              >
 
-                <th>Name</th>
+                <tr>
 
-                <th>Email</th>
+                  <th>#</th>
 
-              </tr>
+                  <th>Name</th>
 
-            </thead>
+                  <th>Email</th>
 
-            <tbody>
+                  <th>Phone</th>
 
-              {users.map(
-                (user, index) => (
+                  <th>Address</th>
 
-                  <tr key={user._id}>
+                </tr>
 
-                    <td>
-                      {index + 1}
-                    </td>
+              </thead>
 
-                    <td>
-                      {user.name}
-                    </td>
+              {/* TABLE BODY */}
 
-                    <td>
-                      {user.email}
+              <tbody>
+
+                {users.length === 0 ? (
+
+                  <tr>
+
+                    <td
+                      colSpan="5"
+                      className="
+                        text-center
+                        text-danger
+                        fw-bold
+                      "
+                    >
+                      No Users Found
                     </td>
 
                   </tr>
 
-                )
-              )}
+                ) : (
 
-            </tbody>
+                  users.map(
+                    (user, index) => (
 
-          </table>
+                      <tr
+                        key={user._id}
+                      >
+
+                        {/* SERIAL NUMBER */}
+
+                        <td>
+                          {index + 1}
+                        </td>
+
+                        {/* NAME */}
+
+                        <td>
+                          {user.name}
+                        </td>
+
+                        {/* EMAIL */}
+
+                        <td>
+                          {user.email}
+                        </td>
+
+                        {/* PHONE */}
+
+                        <td>
+                          {user.phone}
+                        </td>
+
+                        {/* ADDRESS */}
+
+                        <td>
+                          {user.address}
+                        </td>
+
+                      </tr>
+
+                    )
+                  )
+
+                )}
+
+              </tbody>
+
+            </table>
+
+          </div>
 
         </div>
 

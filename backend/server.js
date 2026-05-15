@@ -62,7 +62,9 @@ app.post("/register", async(req, res) => {
         const {
             name,
             email,
-            password
+            password,
+            phone,
+            address
         } = req.body;
 
         const oldUser =
@@ -83,6 +85,8 @@ app.post("/register", async(req, res) => {
 
             name,
             email,
+            phone,
+            address,
             password: hashedPassword
 
         });
@@ -152,7 +156,9 @@ app.post("/login", async(req, res) => {
 
                 id: user._id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                phone: user.phone,
+                address: user.address
 
             }
 
@@ -164,6 +170,32 @@ app.post("/login", async(req, res) => {
 
         res.status(500).json({
             message: "Server Error"
+        });
+
+    }
+
+});
+// =====================================================
+// GET USERS
+// =====================================================
+
+app.get("/users", async(req, res) => {
+
+    try {
+
+        const users =
+            await User.find();
+
+        res.json(users);
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).json({
+
+            message: "Server Error"
+
         });
 
     }
@@ -192,6 +224,74 @@ app.post("/events", async(req, res) => {
 
         res.status(500).json({
             message: "Server Error"
+        });
+
+    }
+
+});
+// =====================================================
+// UPDATE EVENT
+// =====================================================
+
+app.put("/events/:id", async(req, res) => {
+
+    try {
+
+        const updatedEvent =
+            await Event.findByIdAndUpdate(
+
+                req.params.id,
+
+                {
+                    $set: req.body
+                },
+
+                {
+                    new: true,
+                    runValidators: true
+                }
+
+            );
+
+        // EVENT NOT FOUND
+
+        if (!updatedEvent) {
+
+            return res.status(404).json({
+
+                success: false,
+
+                message: "Event not found"
+
+            });
+
+        }
+
+        res.status(200).json({
+
+            success: true,
+
+            message: "Event Updated Successfully",
+
+            data: updatedEvent
+
+        });
+
+    } catch (error) {
+
+        console.log(
+            "UPDATE EVENT ERROR:",
+            error
+        );
+
+        res.status(500).json({
+
+            success: false,
+
+            message: "Failed to update event",
+
+            error: error.message
+
         });
 
     }

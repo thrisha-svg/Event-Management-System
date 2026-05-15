@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* PAGE */
+
+.users-page {
+    min-height: 100vh;
+    background: linear-gradient( 135deg, #f5f7fa, #c3cfe2);
+    padding: 40px 20px;
+}
+
+
+/* TITLE */
+
+.users-title {
+    text-align: center;
+    font-size: 38px;
+    font-weight: bold;
+    color: #0d6efd;
+    margin-bottom: 30px;
+}
+
+
+/* CARD */
+
+.users-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+/* CARD HEADER */
+
+.users-header {
+    background: #0d6efd;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.users-header h3 {
+    margin: 0;
+    font-size: 28px;
+}
+
+
+/* TABLE AREA */
+
+.table-container {
+    overflow-x: auto;
+    padding: 20px;
+}
+
+
+/* TABLE */
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+
+/* TABLE HEAD */
+
+.users-table thead {
+    background: #212529;
+    color: white;
+}
+
+.users-table th {
+    padding: 16px;
+    font-size: 17px;
+}
+
+
+/* TABLE BODY */
+
+.users-table td {
+    padding: 14px;
+    border-bottom: 1px solid #ddd;
+    font-size: 15px;
+}
+
+
+/* ROW HOVER */
+
+.users-table tbody tr:hover {
+    background: #f1f5ff;
+    transition: 0.3s;
+}
+
+
+/* NO USERS */
+
+.no-users {
+    color: red;
+    font-weight: bold;
+    padding: 20px;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .users-title {
+        font-size: 28px;
+    }
+    .users-table th,
+    .users-table td {
+        font-size: 13px;
+        padding: 10px;
+    }
+}
